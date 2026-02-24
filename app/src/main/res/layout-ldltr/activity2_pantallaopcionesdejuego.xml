@@ -10,11 +10,22 @@
     tools:ignore="MissingDefaultResource">
 
     <LinearLayout
+        android:background="@color/red"
         android:id="@+id/topPanel"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:orientation="horizontal">
 
+        <TextView
+            android:textColor="@color/white"
+            android:id="@+id/ajustesText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:padding="50dp"
+            android:text="hola q hace"/>
+
     </LinearLayout>
+
 
 </LinearLayout>
