@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">QuizAppBasic</string>
+    <string name="opciones">Opciones de Juego</string>
+
 </resources>
