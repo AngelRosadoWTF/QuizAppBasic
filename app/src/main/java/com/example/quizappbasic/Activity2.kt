@@ -1,5 +1,4 @@
 package com.example.quizappbasic
-
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.CheckBox
@@ -33,17 +32,17 @@ class Activity2 : AppCompatActivity() {
         var spinner = findViewById<Spinner>(R.id.spinner)
         var Switch = findViewById<Switch>(R.id.Switch)
 
-        var checkBox1Value = false
-        var checkBox2Value = false
-        var checkBox3Value = false
-        var checkBox4Value = false
-        var checkBox5Value = false
+        var checkBox1Value = checkBox1.isChecked
+        var checkBox2Value = checkBox2.isChecked
+        var checkBox3Value = checkBox3.isChecked
+        var checkBox4Value = checkBox4.isChecked
+        var checkBox5Value = checkBox5.isChecked
 
         var sliderValue = 5
-        var spinnerValue = 1
+        var spinnerValue = 5
         var switchValue = false
 
-        var opciones = arrayOf(conte,"Opción 2", "Opción 3")
+        var opciones = arrayOf(getString(R.string.theme1), getString(R.string.theme2), getString(R.string.theme3), getString(R.string.theme4), getString(R.string.theme5) )
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, opciones)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
