@@ -1,11 +1,12 @@
 package com.example.quizappbasic
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.CheckBox
 import android.widget.Spinner
 import android.widget.Switch
 import androidx.activity.enableEdgeToEdge
-import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -30,7 +31,7 @@ class Activity2 : AppCompatActivity() {
 
         var slider = findViewById<Slider>(R.id.slider)
         var spinner = findViewById<Spinner>(R.id.spinner)
-        var Switch = findViewById<Switch>(R.id.Switch)
+        var switch = findViewById<Switch>(R.id.Switch)
 
         var checkBox1Value = checkBox1.isChecked
         var checkBox2Value = checkBox2.isChecked
@@ -39,13 +40,39 @@ class Activity2 : AppCompatActivity() {
         var checkBox5Value = checkBox5.isChecked
 
         var sliderValue = 5
-        var spinnerValue = 5
-        var switchValue = false
+        var spinnerValue = ""
+        var switchValue = switch.isChecked
 
-        var opciones = arrayOf(getString(R.string.theme1), getString(R.string.theme2), getString(R.string.theme3), getString(R.string.theme4), getString(R.string.theme5) )
+        slider.addOnChangeListener{slider, value, fromUser ->
+            sliderValue += value.toInt()
+
+            if(sliderValue < 5){
+                sliderValue = 5
+            } else if(sliderValue > 10){
+                sliderValue = 10
+            }
+        }
+
+        var opciones = arrayOf(getString(R.string.facil),getString(R.string.medio), getString(R.string.dificil))
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, opciones)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
+
+        //queda en duda si de hecho funciona xd
+        spinner.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                spinnerValue = parent.getItemAtPosition(position).toString()
+
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        })
+
     }
 
 

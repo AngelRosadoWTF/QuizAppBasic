@@ -13,4 +13,10 @@
     <string name="theme3">Geografia</string>
     <string name="theme4">Matemáticas</string>
     <string name="theme5">Música</string>
+
+<!--    dificultades-->
+    <string name="facil">Facil</string>
+    <string name="medio">Media</string>
+    <string name="dificil">Dificil</string>
+
 </resources>
