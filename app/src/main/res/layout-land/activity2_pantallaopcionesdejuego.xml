@@ -1,6 +1,211 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity2"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".Activity2"
+    tools:ignore="MissingDefaultResource">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:background="@color/black"
+        android:id="@+id/topPanel"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:textColor="@color/white"
+            android:id="@+id/opcionesText"
+            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:paddingTop="35dp"
+            android:text="@string/opciones"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textCheckBox"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:text="@string/tipoPreguntas"/>
+
+    <LinearLayout
+        android:id="@+id/checkBoxPanel"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+        <!--        checkboxes-->
+        <LinearLayout
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/themeCheckbox1"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+
+            <TextView
+                android:id="@+id/themeText1"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/theme1"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/themeCheckbox2"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+
+            <TextView
+                android:id="@+id/themeText2"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/theme2"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/themeCheckbox3"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+
+            <TextView
+                android:id="@+id/themeText3"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/theme3"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/themeCheckbox4"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+
+            <TextView
+                android:id="@+id/themeText4"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/theme4"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/themeCheckbox5"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+
+            <TextView
+                android:id="@+id/themeText5"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/theme5"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/sliderPanel"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textSlider"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:text="@string/numeroPreguntas"/>
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/slider"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:valueFrom="0.0"
+            android:valueTo="5.0"
+            android:stepSize="1" />
+    </LinearLayout>
+
+    <!--    spiner-->
+    <LinearLayout
+        android:id="@+id/spinerPanel"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textSpiner"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:text="@string/opcionesDificultad"/>
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/switchPanel"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textSwitch"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:text="@string/opcionesPistas"/>
+
+        <Switch
+            android:id="@+id/Switch"
+            android:gravity="center"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    </LinearLayout>
+</LinearLayout>

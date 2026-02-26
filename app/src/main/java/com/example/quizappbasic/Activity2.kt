@@ -1,10 +1,17 @@
 package com.example.quizappbasic
 
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.CheckBox
+import android.widget.Spinner
+import android.widget.Switch
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.slider.Slider
+
 
 class Activity2 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,7 +23,30 @@ class Activity2 : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        var checkBox1 = findViewById<CheckBox>(R.id.themeCheckbox1)
+        var checkBox2 = findViewById<CheckBox>(R.id.themeCheckbox2)
+        var checkBox3 = findViewById<CheckBox>(R.id.themeCheckbox3)
+        var checkBox4 = findViewById<CheckBox>(R.id.themeCheckbox4)
+        var checkBox5 = findViewById<CheckBox>(R.id.themeCheckbox5)
 
+        var slider = findViewById<Slider>(R.id.slider)
+        var spinner = findViewById<Spinner>(R.id.spinner)
+        var Switch = findViewById<Switch>(R.id.Switch)
+
+        var checkBox1Value = false
+        var checkBox2Value = false
+        var checkBox3Value = false
+        var checkBox4Value = false
+        var checkBox5Value = false
+
+        var sliderValue = 5
+        var spinnerValue = 1
+        var switchValue = false
+
+        var opciones = arrayOf(conte,"Opción 2", "Opción 3")
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, opciones)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
     }
 
 
