@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">QuizAppBasic</string>
+    <string name="ResultadoJuego">Resultados de partida</string>
 </resources>
