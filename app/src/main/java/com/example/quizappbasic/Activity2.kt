@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.slider.Slider
+import android.content.Intent
 
 
 class Activity2 : AppCompatActivity() {
@@ -33,11 +34,7 @@ class Activity2 : AppCompatActivity() {
         var spinner = findViewById<Spinner>(R.id.spinner)
         var switch = findViewById<Switch>(R.id.Switch)
 
-        var checkBox1Value = checkBox1.isChecked
-        var checkBox2Value = checkBox2.isChecked
-        var checkBox3Value = checkBox3.isChecked
-        var checkBox4Value = checkBox4.isChecked
-        var checkBox5Value = checkBox5.isChecked
+        var checkBoxList = arrayOf(checkBox1.isChecked, checkBox2.isChecked, checkBox3.isChecked, checkBox4.isChecked, checkBox5.isChecked)
 
         var sliderValue = 5
         var spinnerValue = ""
@@ -72,6 +69,12 @@ class Activity2 : AppCompatActivity() {
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         })
+
+        val intent = Intent(this, Activity2::class.java)
+        intent.putExtra("checkBoxList", "checkBoxList")
+        intent.putExtra("sliderValue", "sliderValue")
+        intent.putExtra("spinerValue", "spinerValue")
+        intent.putExtra("switchValue", "switchValue")
 
     }
 
