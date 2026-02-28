@@ -1,51 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".`Activity1-PantallaInicio`">
-
-    <Button
-        android:id="@+id/btnJugar"
-        android:layout_width="190dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="76dp"
-        android:text="@string/act1_btnJugar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Act1_IV_67" />
-
-    <Button
-        android:id="@+id/btnOpciones"
-        android:layout_width="190dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="64dp"
-        android:text="@string/act1_btnOpciones"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnJugar" />
-
-    <Button
-        android:id="@+id/btnPuntuaciones"
-        android:layout_width="190dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="64dp"
-        android:text="@string/act1_btnOpciones"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnOpciones" />
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/Act1_IV_67"
-        android:layout_width="236dp"
-        android:layout_height="236dp"
-        android:layout_marginTop="64dp"
-        android:contentDescription="Logo del juego"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="32dp"
+        android:contentDescription="@string/app_name"
+
         android:src="@drawable/_7"
+        app:layout_constraintBottom_toTopOf="@id/btnJugar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnJugar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
+
+        android:maxWidth="320dp"
+        android:text="@string/act1_btnJugar"
+        app:layout_constraintBottom_toTopOf="@id/btnOpciones"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Act1_IV_67" />
+
+    <Button
+        android:id="@+id/btnOpciones"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
+
+        android:maxWidth="320dp"
+        android:text="@string/act1_btnOpciones"
+        app:layout_constraintBottom_toTopOf="@id/btnPuntuaciones"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnJugar" />
+
+    <Button
+        android:id="@+id/btnPuntuaciones"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
+
+        android:layout_marginBottom="320dp"
+        android:maxWidth="320dp"
+        android:text="@string/act1_btnPuntuaciones"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnOpciones" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
