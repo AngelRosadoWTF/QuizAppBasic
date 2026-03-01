@@ -89,6 +89,7 @@ class Activity2 : AppCompatActivity() {
         val spinnerValue = spinner.selectedItem.toString()
         val switchValue = switchGame.isChecked
 
+        val intent = Intent(this, GameActivity::class.java)
 
         intent.putExtra("checkBoxList", checkBoxList)
         intent.putExtra("sliderValue", sliderValue)
