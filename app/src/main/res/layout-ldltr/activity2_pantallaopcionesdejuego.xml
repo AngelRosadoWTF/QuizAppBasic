@@ -208,4 +208,12 @@
             tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/startButton"
+        android:layout_gravity="center"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:orientation="vertical"
+        android:text="Jugar"/>
 </LinearLayout>
