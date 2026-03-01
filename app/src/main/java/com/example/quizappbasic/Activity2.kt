@@ -86,7 +86,15 @@ class Activity2 : AppCompatActivity() {
         if (sliderValue < 5) sliderValue = 5
         if (sliderValue > 10) sliderValue = 10
 
-        val spinnerValue = spinner.selectedItem.toString()
+        val spinnerValue : Difficulty
+        if(spinner.selectedItem.toString() == "Dificil"){
+            spinnerValue = Difficulty.DIFICIL
+        }else if(spinner.selectedItem.toString() == "Media"){
+            spinnerValue = Difficulty.NORMAL
+        }else{
+            spinnerValue = Difficulty.FACIL
+        }
+
         val switchValue = switchGame.isChecked
 
 
