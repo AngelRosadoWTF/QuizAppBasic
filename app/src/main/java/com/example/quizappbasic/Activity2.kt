@@ -50,7 +50,7 @@ class Activity2 : AppCompatActivity() {
             }
         }
 
-        var opciones = arrayOf(getString(R.string.facil),getString(R.string.medio), getString(R.string.dificil))
+        var opciones = listOf(getString(R.string.facil),getString(R.string.medio), getString(R.string.dificil))
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, opciones)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
@@ -64,18 +64,19 @@ class Activity2 : AppCompatActivity() {
                 id: Long
             ) {
                 spinnerValue = parent.getItemAtPosition(position).toString()
-
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         })
 
-        val intent = Intent(this, Activity2::class.java)
+        SendAllData()
+    }
+
+    fun SendAllData(){
         intent.putExtra("checkBoxList", "checkBoxList")
         intent.putExtra("sliderValue", "sliderValue")
         intent.putExtra("spinerValue", "spinerValue")
         intent.putExtra("switchValue", "switchValue")
-
     }
 
 
