@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">QuizAppBasic</string>
+    <string name="ResultadoJuego">Resultados de partida</string>
+
+
     <string name="opciones">Opciones de Juego</string>
     <string name="opcionesDificultad">Selecciona la dificultad en la que vas a jugar</string>
     <string name="numeroPreguntas">Selecciona el numero de Preguntas</string>
