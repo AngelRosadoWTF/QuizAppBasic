@@ -1,4 +1,4 @@
-package Clases
+package com.example.quizappbasic.Clases
 
 import Interfaces.Calculadorapuntaje
 import Models.RondaPregunta

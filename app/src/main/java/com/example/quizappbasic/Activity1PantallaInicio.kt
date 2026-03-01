@@ -25,11 +25,11 @@ class Activity1PantallaInicio : AppCompatActivity() {
         val btnPuntuaciones = findViewById<Button>(id.btnPuntuaciones)
 
         btnJugar.setOnClickListener {
-        // startActivity(Intent(this, Activity2::class.java)) // Aqui se abre la actividad 3
+            startActivity(Intent(this, GameActivity::class.java))
         }
 
         btnOpciones.setOnClickListener {
-        // startActivity(Intent(this, Activity2::class.java)) // Aqui se abre la actividad 2
+            startActivity(Intent(this, Activity2::class.java))
         }
 
         btnPuntuaciones.setOnClickListener {

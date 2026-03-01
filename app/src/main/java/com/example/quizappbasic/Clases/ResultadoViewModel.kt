@@ -1,4 +1,4 @@
-package Clases
+package com.example.quizappbasic.Clases
 
 import Models.ResultadoEstado
 import androidx.lifecycle.ViewModel

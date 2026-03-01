@@ -26,10 +26,10 @@
         android:id="@+id/imgTheme"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:src="@drawable/ic_theme_placeholder"
         android:contentDescription="Tema"
-        app:layout_constraintTop_toBottomOf="@id/contador"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:src="@drawable/_7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/contador" />
 
     <TextView
         android:id="@+id/tvQuestion"

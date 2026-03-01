@@ -1,4 +1,4 @@
-package Clases
+package com.example.quizappbasic.Clases
 
 import androidx.activity.viewModels
 import Models.ResultadoEstado
@@ -14,7 +14,7 @@ import com.example.quizappbasic.R
 import androidx.appcompat.app.AppCompatActivity
 
 
-class ResuladoActivity: AppCompatActivity() {
+class ResultadoActivity: AppCompatActivity() {
     //Instancia del modelo ubicada en Models
     private val viewModel: ResultadoViewModel by viewModels()
     //Intancias de variables

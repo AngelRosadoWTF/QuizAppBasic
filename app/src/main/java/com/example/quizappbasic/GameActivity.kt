@@ -1,7 +1,7 @@
 package com.example.quizappbasic
 
-import Clases.CalculadoraPuntajeFinal
-import Clases.ResuladoActivity
+import com.example.quizappbasic.Clases.CalculadoraPuntajeFinal
+import com.example.quizappbasic.Clases.ResultadoActivity
 import Models.RondaPregunta
 import Objetos.Claves
 import android.content.Intent
@@ -92,7 +92,7 @@ class GameActivity : AppCompatActivity() {
         }
 
         val resultado = calculadora.calcular(rondas, viewModel.difficulty)
-        val intent = Intent(this, ResuladoActivity::class.java).apply {
+        val intent = Intent(this, ResultadoActivity::class.java).apply {
             putExtra(Claves.puntaje, resultado.puntaje)
             putExtra(Claves.Aciertos, resultado.respuestasCorrectas)
             putExtra(Claves.Total, resultado.totalPreguntas)

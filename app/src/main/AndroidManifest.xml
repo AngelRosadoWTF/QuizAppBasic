@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    package="com.example.quizappbasic"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
@@ -12,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizAppBasic">
         <activity
-            android:name="Clases.ResuladoActivity"
+            android:name=".Clases.ResultadoActivity"
             android:exported="false" />
         <activity
             android:name=".Activity1PantallaInicio"
@@ -23,6 +25,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activity2" />
+        <activity android:name=".GameActivity"/>
     </application>
 
 </manifest>
