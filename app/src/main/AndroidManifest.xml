@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizAppBasic">
         <activity
+            android:name="Clases.ResuladoActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity1PantallaInicio"
             android:exported="true">
             <intent-filter>
