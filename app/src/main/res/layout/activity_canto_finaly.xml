@@ -5,45 +5,46 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:fillViewport="true"
     android:padding="16dp">
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="vertical"
-        android:gravity="center_horizontal"
         android:padding="16dp">
 
         <TextView
             android:id="@+id/Progreso"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="italic"
-            android:textSize="24dp"/>
+            android:textSize="28sp"
+            android:textStyle="bold|italic" />
+
         <ImageView
             android:id="@+id/Imagenchill"
-            android:layout_width="220dp"
-            android:layout_height="220dp"
-            android:layout_marginTop="16dp"
-            android:scaleType="centerCrop" />
+            android:layout_width="240dp"
+            android:layout_height="240dp"
+            android:layout_marginTop="24dp"
+            android:scaleType="centerInside" />
+
         <TextView
             android:id="@+id/estatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:textStyle="italic"
-            android:textSize="16dp" />
+            android:layout_marginTop="16dp"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="italic" />
+
         <Button
             android:id="@+id/Resultadosplay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:textStyle="italic"
-            android:text="@string/ResultadoJuego" />
-
-
+            android:layout_marginTop="32dp"
+            android:text="@string/ResultadoJuego"
+            android:textStyle="bold|italic" />
 
     </LinearLayout>
 
