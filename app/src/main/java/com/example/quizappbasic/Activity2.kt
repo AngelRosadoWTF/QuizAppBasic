@@ -43,12 +43,12 @@ class Activity2 : AppCompatActivity() {
         switchGame = findViewById(R.id.Switch)
         startButton = findViewById(R.id.startButton)
 
-        // 🔹 Configuración segura del slider
         slider.valueFrom = 5f
         slider.valueTo = 10f
         slider.stepSize = 1f
 
         slider.addOnChangeListener { _, value, _ ->
+            slider.value = value
             if (value < 5f) {
                 slider.value = 5f
             } else if (value > 10f) {
@@ -81,7 +81,6 @@ class Activity2 : AppCompatActivity() {
             checkBox5.isChecked
         )
 
-        // 🔹 Validación final del valor antes de enviarlo
         var sliderValue = slider.value.toInt()
 
         if (sliderValue < 5) sliderValue = 5
@@ -90,7 +89,6 @@ class Activity2 : AppCompatActivity() {
         val spinnerValue = spinner.selectedItem.toString()
         val switchValue = switchGame.isChecked
 
-//        val intent = Intent(this, Activity3::class.java)
 
         intent.putExtra("checkBoxList", checkBoxList)
         intent.putExtra("sliderValue", sliderValue)
