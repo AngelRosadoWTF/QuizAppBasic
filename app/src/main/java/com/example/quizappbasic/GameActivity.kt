@@ -24,7 +24,7 @@ class GameActivity : AppCompatActivity() {
         if (!::viewModel.isInitialized || !this::viewModel.isInitialized) {
             initGame()
         }
-
+        renderAnswers(viewModel.getCurrentQuestion())
         renderQuestion()
         setupButtons()
     }
@@ -59,7 +59,7 @@ class GameActivity : AppCompatActivity() {
     private fun renderAnswers(question: Question) {
         var textView = findViewById<TextView>(R.id.tvQuestion)
 
-        textView.text = viewModel.getCurrentQuestion().questionText
+        textView.text = question.questionText
     }
 
     private fun setupButtons() {
