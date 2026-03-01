@@ -3,10 +3,7 @@ package com.example.quizappbasic
 import androidx.lifecycle.ViewModel
 
 class GameViewModel : ViewModel() {
-
-    // Flag para saber si el juego ya fue inicializado (sobrevive rotaciones)
     var isInitialized = false
-
     lateinit var questions: MutableList<Question>
     var currentIndex = 0
     var totalQuestions = 5
@@ -14,7 +11,6 @@ class GameViewModel : ViewModel() {
     var hintsEnabled = true
     var availableHints = 3
     var hintsUsedTotal = 0
-
     private var correctStreak = 0
 
     fun getCurrentQuestion(): Question = questions[currentIndex]
@@ -24,7 +20,6 @@ class GameViewModel : ViewModel() {
         if (q.answered) return
         q.answered = true
         q.selectedAnswerIndex = answerIndex
-
         if (q.answers[answerIndex].isCorrect && !q.usedHint) {
             correctStreak++
             // Bonificación: cada 2 correctas seguidas sin pista → +1 pista
@@ -40,14 +35,11 @@ class GameViewModel : ViewModel() {
         if (!hintsEnabled || availableHints <= 0) return false
         val q = getCurrentQuestion()
         if (q.answered) return false
-
         q.usedHint = true
         availableHints--
         hintsUsedTotal++
         correctStreak = 0  // usar pista rompe la racha
-
         val incorrectAvailable = q.answers.filter { !it.isCorrect && !it.isEliminated }
-
         return if (incorrectAvailable.size > 1) {
             // Eliminar una incorrecta aleatoria
             incorrectAvailable.random().isEliminated = true
