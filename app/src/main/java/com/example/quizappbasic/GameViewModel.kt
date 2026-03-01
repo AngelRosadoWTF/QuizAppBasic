@@ -3,6 +3,7 @@ package com.example.quizappbasic
 import androidx.lifecycle.ViewModel
 
 class GameViewModel : ViewModel() {
+
     lateinit var questions: MutableList<Question>
     var currentIndex = 0
     var totalQuestions = 5
@@ -10,7 +11,9 @@ class GameViewModel : ViewModel() {
     var hintsEnabled = true
     var availableHints = 3
     private var correctStreak = 0
+
     fun getCurrentQuestion(): Question = questions[currentIndex]
+
     fun answerQuestion(answerIndex: Int) {
         val q = getCurrentQuestion()
         if (q.answered) return
@@ -25,6 +28,7 @@ class GameViewModel : ViewModel() {
             correctStreak = 0
         }
     }
+
     fun useHint(): Boolean {
         if (!hintsEnabled || availableHints <= 0) return false
         val q = getCurrentQuestion()
@@ -34,15 +38,16 @@ class GameViewModel : ViewModel() {
         if (incorrect.size > 1) {
             incorrect.random().isEliminated = true
         } else {
-            // Solo quedan 2 → responder automáticamente
             val correctIndex = q.answers.indexOfFirst { it.isCorrect }
             answerQuestion(correctIndex)
         }
         return true
     }
+
     fun nextQuestion() {
         if (currentIndex < questions.lastIndex) currentIndex++
     }
+
     fun prevQuestion() {
         if (currentIndex > 0) currentIndex--
     }
