@@ -26,7 +26,7 @@
         android:id="@+id/imgTheme"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:src="@drawable/ic_theme_placeholder"
+        android:src="@drawable/peliculas"
         android:contentDescription="Tema"
         app:layout_constraintTop_toBottomOf="@id/contador"
         app:layout_constraintStart_toStartOf="parent"/>
