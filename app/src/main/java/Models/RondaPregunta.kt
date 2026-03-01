@@ -1,10 +1,12 @@
 package Models
 
-//data class RondaPregunta(
-////    val pregunta: Pregunta,
-////    val opciones: List<String>,
-////    val indiceOpcionSeleccionada: Int? = null,
-////    val usoPista: Boolean = false,
-////    val indicesEliminados: Set<Int> = setOf()
-//
-//)
+import com.example.quizappbasic.Answer
+import com.example.quizappbasic.Question
+// definimos el modelo de datos que se guardaran
+data class RondaPregunta(
+    val pregunta: Question,
+    val opciones: List<Answer>,
+    val indiceOpcionSeleccionada: Int? = null,
+    val usoPista: Boolean = false
+
+)

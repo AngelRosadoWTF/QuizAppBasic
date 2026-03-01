@@ -22,6 +22,15 @@ class ResuladoActivity: AppCompatActivity() {
     private lateinit var Texto: TextView
     private lateinit var Imagen: ImageView
     private lateinit var Botton: Button
+    
+    // Claves para guardar el estado de la pantalla
+    companion object {
+        private const val KEY_PUNTAJE = "puntaje"
+        private const val KEY_CORRECTAS = "correctas"
+        private const val KEY_TOTAL = "total"
+        private const val KEY_PISTAS = "pistasUsadas"
+        private const val KEY_DIFICULTAD = "dificultad"
+    }
 
 
 
@@ -41,8 +50,16 @@ class ResuladoActivity: AppCompatActivity() {
         Imagen = findViewById(R.id.Imagenchill)
         Botton = findViewById(R.id.Resultadosplay)
      //Instanciamos por primara vez los datos
-        if (savedInstanceState == null) {
-            viewModel.estado = ResultadoEstado(
+        viewModel.estado = if (savedInstanceState != null) {
+            ResultadoEstado(
+                puntaje = savedInstanceState.getInt(KEY_PUNTAJE, 0),
+                correctas = savedInstanceState.getInt(KEY_CORRECTAS, 0),
+                total = savedInstanceState.getInt(KEY_TOTAL, 0),
+                pistasUsadas = savedInstanceState.getInt(KEY_PISTAS, 0),
+                dificultad = savedInstanceState.getString(KEY_DIFICULTAD) ?: "NORMAL"
+            )
+        } else {
+            ResultadoEstado(
                 puntaje= intent.getIntExtra(Claves.puntaje, 0),
                 correctas = intent.getIntExtra(Claves.Aciertos, 0),
                 total = intent.getIntExtra(Claves.Total, 0),
@@ -71,7 +88,7 @@ class ResuladoActivity: AppCompatActivity() {
     // de acuerdo al puntaje se genera una imagen
     private fun ImagenPuntaje(score: Int,Pistas: Int, dificultad : String): Int{
         return when {
-            dificultad == "Dificil" && score >= 50 &&  Pistas ==0 ->android.R.drawable.alert_dark_frame
+            dificultad.equals("Dificil", ignoreCase = true) && score >= 50 &&  Pistas ==0 ->android.R.drawable.alert_dark_frame
             score >= 100 && Pistas <= 2 -> android.R.drawable.star_on
             score >= 200 -> android.R.drawable.btn_plus
             else -> android.R.drawable.star_off }
@@ -80,7 +97,11 @@ class ResuladoActivity: AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle)
     {
         super.onSaveInstanceState(outState)
-        outState.putInt("puntaje",viewModel.estado.puntaje)
+        outState.putInt(KEY_PUNTAJE, viewModel.estado.puntaje)
+        outState.putInt(KEY_CORRECTAS, viewModel.estado.correctas)
+        outState.putInt(KEY_TOTAL, viewModel.estado.total)
+        outState.putInt(KEY_PISTAS, viewModel.estado.pistasUsadas)
+        outState.putString(KEY_DIFICULTAD, viewModel.estado.dificultad)
     }
 
 }
