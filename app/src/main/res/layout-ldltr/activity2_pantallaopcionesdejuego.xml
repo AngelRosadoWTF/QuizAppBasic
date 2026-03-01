@@ -208,4 +208,16 @@
             tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/startButton"
+        android:layout_gravity="center"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+<<<<<<< HEAD
+        android:text="Start"/>
+=======
+        android:orientation="vertical"
+        android:text="Jugar"/>
+>>>>>>> parent of 3f9ed21 (Revert "correcciones y acomodo")
 </LinearLayout>
