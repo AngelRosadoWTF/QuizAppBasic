@@ -18,11 +18,13 @@ class GameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+
         viewModel = ViewModelProvider(this)[GameViewModel::class.java]
         repository = QuestionRepository(this)
         if (!::viewModel.isInitialized || !this::viewModel.isInitialized) {
             initGame()
         }
+        renderAnswers(viewModel.getCurrentQuestion())
         renderQuestion()
         setupButtons()
     }
@@ -55,7 +57,9 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun renderAnswers(question: Question) {
+        var textView = findViewById<TextView>(R.id.tvQuestion)
 
+        textView.text = question.questionText
     }
 
     private fun setupButtons() {
