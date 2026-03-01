@@ -3,6 +3,18 @@ package com.example.quizappbasic
 import android.content.Context
 
 class QuestionRepository(private val context: Context) {
+
+    fun getQuestionByTheme(themeList : List<Theme>) : List<Question>{
+        var allList = getAllQuestions()
+        var listByTheme = allList
+
+        for(theme in themeList){
+            for(questions in allList){
+                listByTheme = allList.filter { theme == questions.theme }
+            }
+        }
+        return listByTheme
+    }
     fun getAllQuestions(): List<Question> {
         return listOf(
             Question(
