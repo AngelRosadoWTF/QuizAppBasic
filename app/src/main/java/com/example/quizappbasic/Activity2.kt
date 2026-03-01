@@ -81,6 +81,7 @@ class Activity2 : AppCompatActivity() {
             checkBox5.isChecked
         )
 
+
         var sliderValue = slider.value.toInt()
 
         if (sliderValue < 5) sliderValue = 5
@@ -96,13 +97,32 @@ class Activity2 : AppCompatActivity() {
         }
 
         val switchValue = switchGame.isChecked
+        val themeList = SendThemes(checkBoxList)
 
-
-        intent.putExtra("checkBoxList", checkBoxList)
+        intent.putExtra("themeList", ArrayList(themeList))
         intent.putExtra("sliderValue", sliderValue)
         intent.putExtra("spinnerValue", spinnerValue)
         intent.putExtra("switchValue", switchValue)
 
         startActivity(intent)
+    }
+
+    private fun SendThemes(checkBoxList : BooleanArray) : List<Theme>{
+        var themeList = listOf(
+            Theme.PELICULAS,
+            Theme.VIDEOJUEGOS,
+            Theme.PROGRAMACION,
+            Theme.GEOGRAFIA,
+            Theme.ALGEBRA)
+
+        val returnList = mutableListOf<Theme>()
+
+        for (i in 0 until checkBoxList.size) {
+            if (checkBoxList[i]) {
+                returnList.add(themeList[i])
+            }
+        }
+
+        return returnList
     }
 }
