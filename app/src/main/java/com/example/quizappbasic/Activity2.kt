@@ -1,36 +1,13 @@
 package com.example.quizappbasic
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.Spinner
-import android.widget.Switch
+import android.widget.*
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.slider.Slider
-<<<<<<< HEAD
-import android.content.Intent
-import android.widget.Button
-
-
-class Activity2 : AppCompatActivity() {
-    var checkBox1 = findViewById<CheckBox>(R.id.themeCheckbox1)
-    var checkBox2 = findViewById<CheckBox>(R.id.themeCheckbox2)
-    var checkBox3 = findViewById<CheckBox>(R.id.themeCheckbox3)
-    var checkBox4 = findViewById<CheckBox>(R.id.themeCheckbox4)
-    var checkBox5 = findViewById<CheckBox>(R.id.themeCheckbox5)
-
-    var slider = findViewById<Slider>(R.id.slider)
-    var spinner = findViewById<Spinner>(R.id.spinner)
-    var switch = findViewById<Switch>(R.id.Switch)
-    var startButton = findViewById<Button>(R.id.startButton)
-    var sliderValue = 5
-    var spinnerValue = ""
-    var switchValue = switch.isChecked
-=======
 
 class Activity2 : AppCompatActivity() {
 
@@ -43,7 +20,6 @@ class Activity2 : AppCompatActivity() {
     private lateinit var spinner: Spinner
     private lateinit var switchGame: Switch
     private lateinit var startButton: Button
->>>>>>> parent of 3f9ed21 (Revert "correcciones y acomodo")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,25 +31,6 @@ class Activity2 : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-<<<<<<< HEAD
-
-        slider.addOnChangeListener{slider, value, fromUser ->
-            sliderValue = value.toInt()
-
-            if(sliderValue < 5){
-                sliderValue = 5
-            } else if(sliderValue > 10){
-                sliderValue = 10
-            }
-        }
-
-        val opciones = listOf(
-            getString(R.string.facil),
-            getString(R.string.medio),
-            getString(R.string.dificil)
-        )
-
-=======
 
         checkBox1 = findViewById(R.id.themeCheckbox1)
         checkBox2 = findViewById(R.id.themeCheckbox2)
@@ -84,7 +41,20 @@ class Activity2 : AppCompatActivity() {
         slider = findViewById(R.id.slider)
         spinner = findViewById(R.id.spinner)
         switchGame = findViewById(R.id.Switch)
-        startButton = findViewById(R.id.startButton) // Asegúrate de tener este botón en tu XML
+        startButton = findViewById(R.id.startButton)
+
+        // 🔹 Configuración segura del slider
+        slider.valueFrom = 5f
+        slider.valueTo = 10f
+        slider.stepSize = 1f
+
+        slider.addOnChangeListener { _, value, _ ->
+            if (value < 5f) {
+                slider.value = 5f
+            } else if (value > 10f) {
+                slider.value = 10f
+            }
+        }
 
         val opciones = listOf(
             getString(R.string.facil),
@@ -92,35 +62,11 @@ class Activity2 : AppCompatActivity() {
             getString(R.string.dificil)
         )
 
->>>>>>> parent of 3f9ed21 (Revert "correcciones y acomodo")
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, opciones)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
 
         startButton.setOnClickListener {
-<<<<<<< HEAD
-            SendAllData()
-        }
-    }
-
-    fun SendAllData() {
-        checkBox1.isChecked
-        checkBox2.isChecked
-        checkBox3.isChecked
-        checkBox4.isChecked
-        checkBox5.isChecked
-
-         sliderValue = slider.value.toInt()
-         spinnerValue = spinner.selectedItem.toString()
-         switchValue = switch.isChecked
-        
-//        val intent = Intent(this, Activity3::class.java)
-
-        intent.putExtra("checkBoxList", "checkBoxList")
-        intent.putExtra("sliderValue", "sliderValue")
-        intent.putExtra("spinerValue", "spinerValue")
-        intent.putExtra("switchValue", "switchValue")
-=======
             sendAllData()
         }
     }
@@ -135,10 +81,16 @@ class Activity2 : AppCompatActivity() {
             checkBox5.isChecked
         )
 
-        val sliderValue = slider.value.toInt()
+        // 🔹 Validación final del valor antes de enviarlo
+        var sliderValue = slider.value.toInt()
+
+        if (sliderValue < 5) sliderValue = 5
+        if (sliderValue > 10) sliderValue = 10
+
         val spinnerValue = spinner.selectedItem.toString()
         val switchValue = switchGame.isChecked
 
+//        val intent = Intent(this, Activity3::class.java)
 
         intent.putExtra("checkBoxList", checkBoxList)
         intent.putExtra("sliderValue", sliderValue)
@@ -146,6 +98,5 @@ class Activity2 : AppCompatActivity() {
         intent.putExtra("switchValue", switchValue)
 
         startActivity(intent)
->>>>>>> parent of 3f9ed21 (Revert "correcciones y acomodo")
     }
 }
