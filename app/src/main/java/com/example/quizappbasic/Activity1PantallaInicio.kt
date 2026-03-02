@@ -30,10 +30,12 @@ class Activity1PantallaInicio : AppCompatActivity() {
         btnPuntuaciones.isEnabled = savedInstanceState?.getBoolean(KEY_PUNTUACIONES_ENABLED, false) ?: false
 
         btnJugar.setOnClickListener {
+            val prefs = getSharedPreferences("game_settings", MODE_PRIVATE)
+
             val intentJuego = Intent(this, GameActivity::class.java).apply {
-                putExtra("NUM_QUESTIONS", 5)
-                putExtra("DIFFICULTY", Difficulty.NORMAL.name)
-                putExtra("HINTS_ENABLED", true)
+                putExtra("NUM_QUESTIONS", prefs.getInt("NUM_QUESTIONS", 5))
+                putExtra("DIFFICULTY", prefs.getString("DIFFICULTY", Difficulty.NORMAL.name))
+                putExtra("HINTS_ENABLED", prefs.getBoolean("HINTS_ENABLED", true))
             }
             startActivity(intentJuego)
         }

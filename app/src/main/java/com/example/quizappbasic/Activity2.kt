@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.slider.Slider
+import androidx.core.content.edit
 
 class Activity2 : AppCompatActivity() {
 
@@ -138,6 +139,13 @@ class Activity2 : AppCompatActivity() {
             putExtra("sliderValue", sliderValue)
             putExtra("spinnerValue", spinnerValue)
             putExtra("switchValue", switchValue)
+        }
+
+        val prefs = getSharedPreferences("game_settings", MODE_PRIVATE)
+        prefs.edit {
+            putInt("NUM_QUESTIONS", sliderValue)
+                .putString("DIFFICULTY", difficultyValue)
+                .putBoolean("HINTS_ENABLED", switchValue)
         }
 
         startActivity(gameIntent)
