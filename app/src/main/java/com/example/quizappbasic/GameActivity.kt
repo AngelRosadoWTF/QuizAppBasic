@@ -5,6 +5,7 @@ import Clases.ResuladoActivity
 import Models.RondaPregunta
 import Objetos.Claves
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -66,7 +67,12 @@ class GameActivity : AppCompatActivity() {
 
     private fun renderQuestion() {
         val q = viewModel.getCurrentQuestion()
-        findViewById<TextView>(R.id.tvQuestion).text = q.questionText
+        val textoPregunta = if (q.usedHint) {
+            "${q.questionText} (usó pista)"
+        } else {
+            q.questionText
+        }
+        findViewById<TextView>(R.id.tvQuestion).text = textoPregunta
         findViewById<TextView>(R.id.contador).text = "${viewModel.currentIndex + 1} / ${viewModel.totalQuestions}"
         findViewById<TextView>(R.id.pista).text = "Pistas: ${viewModel.availableHints}"
         renderAnswers(q)
@@ -85,7 +91,27 @@ class GameActivity : AppCompatActivity() {
                 val answer = question.answers[index]
                 button.visibility = android.view.View.VISIBLE
                 button.text = answer.text
-                button.isEnabled = !answer.isEliminated && !question.answered
+                button.setBackgroundColor(Color.LTGRAY)
+
+                if (answer.isEliminated) {
+                    button.text = "${answer.text} (eliminada)"
+                    button.isEnabled = false
+                    button.setBackgroundColor(Color.DKGRAY)
+                } else {
+                    button.isEnabled = !question.answered
+                }
+
+                if (question.answered && !answer.isEliminated) {
+                    if (answer.isCorrect) {
+                        button.setBackgroundColor(Color.parseColor("#4CAF50"))
+                    }
+
+                    val selectedIndex = question.selectedAnswerIndex
+                    if (selectedIndex == index && !answer.isCorrect) {
+                        button.setBackgroundColor(Color.parseColor("#F44336"))
+                    }
+                }
+
                 button.setOnClickListener {
                     viewModel.answerQuestion(index)
                     renderQuestion()
