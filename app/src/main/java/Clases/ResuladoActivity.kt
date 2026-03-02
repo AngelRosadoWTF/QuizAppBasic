@@ -1,0 +1,118 @@
+package Clases
+
+import androidx.activity.viewModels
+import Models.ResultadoEstado
+import Objetos.Claves
+import android.os.Bundle
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.activity.enableEdgeToEdge
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.example.quizappbasic.R
+import androidx.appcompat.app.AppCompatActivity
+
+
+class ResuladoActivity: AppCompatActivity() {
+    //Instancia del modelo ubicada en Models
+    private val viewModel: ResultadoViewModel by viewModels()
+    //Intancias de variables
+    private lateinit var TextoPuntaje: TextView
+    private lateinit var Texto: TextView
+    private lateinit var Imagen: ImageView
+    private lateinit var ImagenPistas: ImageView
+    private lateinit var Botton: Button
+    
+    // Claves para guardar el estado de la pantalla
+    companion object {
+        private const val KEY_PUNTAJE = "puntaje"
+        private const val KEY_CORRECTAS = "correctas"
+        private const val KEY_TOTAL = "total"
+        private const val KEY_PISTAS = "pistasUsadas"
+        private const val KEY_DIFICULTAD = "dificultad"
+    }
+
+
+
+ // se instancia la parte de la pantalla
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_canto_finaly)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+     // Conexion de variables
+        TextoPuntaje  = findViewById(R.id.Progreso)
+        Texto = findViewById(R.id.estatus)
+        Imagen = findViewById(R.id.Imagenchill)
+        ImagenPistas = findViewById(R.id.ImagenPistas)
+        Botton = findViewById(R.id.Resultadosplay)
+
+     //Instanciamos por primara vez los datos
+        viewModel.estado = if (savedInstanceState != null) {
+            ResultadoEstado(
+                puntaje = savedInstanceState.getInt(KEY_PUNTAJE, 0),
+                correctas = savedInstanceState.getInt(KEY_CORRECTAS, 0),
+                total = savedInstanceState.getInt(KEY_TOTAL, 0),
+                pistasUsadas = savedInstanceState.getInt(KEY_PISTAS, 0),
+                dificultad = savedInstanceState.getString(KEY_DIFICULTAD) ?: "NORMAL"
+            )
+        } else {
+            ResultadoEstado(
+                puntaje= intent.getIntExtra(Claves.puntaje, 0),
+                correctas = intent.getIntExtra(Claves.Aciertos, 0),
+                total = intent.getIntExtra(Claves.Total, 0),
+                pistasUsadas = intent.getIntExtra(Claves.PistasEnUso, 0),
+                dificultad = intent.getStringExtra(Claves.DificultadResult)
+                    ?: intent.getStringExtra(Claves.Dificultad)
+                    ?: "NORMAL"
+            )
+        }
+     //Pintamos los datos
+        Actualizacion()
+     //finalizamos
+     Botton.setOnClickListener { finish() }
+
+
+    }
+
+    // Leemos resultados con los datos le dames vista al puntaje
+    private fun Actualizacion (){
+        val estado =viewModel.estado
+        TextoPuntaje.text= "Puntaje total: ${estado.puntaje}"
+        Texto.text = "Correctas: ${estado.correctas}/${estado.total} --> PistasUsadas: ${estado.pistasUsadas} --> ${estado.dificultad}"
+        Imagen.setImageResource(ImagenCalificacion(estado.puntaje, estado.correctas, estado.total))
+        ImagenPistas.setImageResource(ImagenEstadoPistas(estado.pistasUsadas))
+
+    }
+
+    private fun ImagenEstadoPistas(pistasUsadas: Int): Int {
+        return if (pistasUsadas > 0) R.drawable.conpistas else R.drawable.sinpistas
+    }
+
+    private fun ImagenCalificacion(score: Int, correctas: Int, total: Int): Int{
+        return when {
+            correctas == 0 -> R.drawable.queseador
+            total > 0 && correctas == total -> R.drawable.excelente
+            score <= 0 -> R.drawable.malo
+            correctas * 2 >= total -> R.drawable.bueno
+            else -> R.drawable.malo
+        }
+    }
+
+    // guarda el puntaje
+    override fun onSaveInstanceState(outState: Bundle)
+    {
+        super.onSaveInstanceState(outState)
+        outState.putInt(KEY_PUNTAJE, viewModel.estado.puntaje)
+        outState.putInt(KEY_CORRECTAS, viewModel.estado.correctas)
+        outState.putInt(KEY_TOTAL, viewModel.estado.total)
+        outState.putInt(KEY_PISTAS, viewModel.estado.pistasUsadas)
+        outState.putString(KEY_DIFICULTAD, viewModel.estado.dificultad)
+    }
+
+}
