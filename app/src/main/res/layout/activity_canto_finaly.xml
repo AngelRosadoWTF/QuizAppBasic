@@ -29,6 +29,13 @@
             android:layout_marginTop="24dp"
             android:scaleType="centerInside" />
 
+        <ImageView
+            android:id="@+id/ImagenPistas"
+            android:layout_width="240dp"
+            android:layout_height="240dp"
+            android:layout_marginTop="12dp"
+            android:scaleType="centerInside" />
+
         <TextView
             android:id="@+id/estatus"
             android:layout_width="wrap_content"

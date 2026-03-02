@@ -21,6 +21,7 @@ class ResuladoActivity: AppCompatActivity() {
     private lateinit var TextoPuntaje: TextView
     private lateinit var Texto: TextView
     private lateinit var Imagen: ImageView
+    private lateinit var ImagenPistas: ImageView
     private lateinit var Botton: Button
     
     // Claves para guardar el estado de la pantalla
@@ -48,6 +49,7 @@ class ResuladoActivity: AppCompatActivity() {
         TextoPuntaje  = findViewById(R.id.Progreso)
         Texto = findViewById(R.id.estatus)
         Imagen = findViewById(R.id.Imagenchill)
+        ImagenPistas = findViewById(R.id.ImagenPistas)
         Botton = findViewById(R.id.Resultadosplay)
 
      //Instanciamos por primara vez los datos
@@ -83,17 +85,25 @@ class ResuladoActivity: AppCompatActivity() {
         val estado =viewModel.estado
         TextoPuntaje.text= "Puntaje total: ${estado.puntaje}"
         Texto.text = "Correctas: ${estado.correctas}/${estado.total} --> PistasUsadas: ${estado.pistasUsadas} --> ${estado.dificultad}"
-        Imagen.setImageResource(ImagenPuntaje(estado.puntaje,estado.pistasUsadas, estado.dificultad))
+        Imagen.setImageResource(ImagenCalificacion(estado.puntaje, estado.correctas, estado.total))
+        ImagenPistas.setImageResource(ImagenEstadoPistas(estado.pistasUsadas))
 
     }
-    // de acuerdo al puntaje se genera una imagen
-    private fun ImagenPuntaje(score: Int,Pistas: Int, dificultad : String): Int{
+
+    private fun ImagenEstadoPistas(pistasUsadas: Int): Int {
+        return if (pistasUsadas > 0) R.drawable.conpistas else R.drawable.sinpistas
+    }
+
+    private fun ImagenCalificacion(score: Int, correctas: Int, total: Int): Int{
         return when {
-            dificultad.equals("Dificil", ignoreCase = true) && score >= 50 &&  Pistas ==0 ->android.R.drawable.alert_dark_frame
-            score >= 100 && Pistas <= 2 -> android.R.drawable.star_on
-            score >= 200 -> android.R.drawable.btn_plus
-            else -> android.R.drawable.star_off }
+            correctas == 0 -> R.drawable.queseador
+            total > 0 && correctas == total -> R.drawable.excelente
+            score <= 0 -> R.drawable.malo
+            correctas * 2 >= total -> R.drawable.bueno
+            else -> R.drawable.malo
         }
+    }
+
     // guarda el puntaje
     override fun onSaveInstanceState(outState: Bundle)
     {
