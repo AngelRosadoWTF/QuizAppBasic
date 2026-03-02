@@ -69,9 +69,9 @@ class GameActivity : AppCompatActivity() {
             if (correctAnswer != null) {
                 val incorrectAnswers = it.answers.filter { answer -> !answer.isCorrect }.shuffled()
                 val maxIncorrect = (viewModel.difficulty.maxAnswers - 1).coerceAtLeast(0)
-                val selectedAnswers = mutableListOf(correctAnswer)
-                selectedAnswers.addAll(incorrectAnswers.take(maxIncorrect))
-                selectedAnswers.shuffle()
+                val selectedAnswers = incorrectAnswers.take(maxIncorrect).toMutableList()
+                val randomIndex = (0..selectedAnswers.size).random()
+                selectedAnswers.add(randomIndex, correctAnswer)
                 it.answers.clear()
                 it.answers.addAll(selectedAnswers)
             } else {
