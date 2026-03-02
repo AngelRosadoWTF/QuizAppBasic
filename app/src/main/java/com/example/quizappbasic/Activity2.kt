@@ -1,7 +1,5 @@
 package com.example.quizappbasic
 
-import android.content.Context
-import android.content.res.Configuration
 import android.content.Intent
 import android.os.Bundle
 import android.widget.*
@@ -10,20 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.slider.Slider
-import java.util.Locale
 
 class Activity2 : AppCompatActivity() {
-
-    override fun attachBaseContext(newBase: Context?) {
-        if (newBase == null) {
-            super.attachBaseContext(newBase)
-            return
-        }
-        val configuration = Configuration(newBase.resources.configuration)
-        configuration.setLayoutDirection(Locale("es"))
-        val context = newBase.createConfigurationContext(configuration)
-        super.attachBaseContext(context)
-    }
 
     companion object {
         private const val KEY_CHECKBOX1 = "key_checkbox1"
