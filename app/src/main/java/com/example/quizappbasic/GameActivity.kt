@@ -8,6 +8,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -111,7 +112,18 @@ class GameActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.tvQuestion).text = textoPregunta
         findViewById<TextView>(R.id.contador).text = "${viewModel.currentIndex + 1} / ${viewModel.totalQuestions}"
         findViewById<TextView>(R.id.pista).text = "Pistas: ${viewModel.availableHints}"
+        findViewById<ImageView>(R.id.imgTheme).setImageResource(getThemeIcon(q.theme))
         renderAnswers(q)
+    }
+
+    private fun getThemeIcon(theme: Theme): Int {
+        return when (theme) {
+            Theme.PELICULAS -> R.drawable.peliculas
+            Theme.VIDEOJUEGOS -> R.drawable.videojuegos
+            Theme.GEOGRAFIA -> R.drawable.geografia
+            Theme.PROGRAMACION -> R.drawable.programacion
+            Theme.ALGEBRA -> R.drawable.algebra
+        }
     }
 
     private fun renderAnswers(question: Question) {
