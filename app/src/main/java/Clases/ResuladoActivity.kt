@@ -49,6 +49,7 @@ class ResuladoActivity: AppCompatActivity() {
         Texto = findViewById(R.id.estatus)
         Imagen = findViewById(R.id.Imagenchill)
         Botton = findViewById(R.id.Resultadosplay)
+
      //Instanciamos por primara vez los datos
         viewModel.estado = if (savedInstanceState != null) {
             ResultadoEstado(
