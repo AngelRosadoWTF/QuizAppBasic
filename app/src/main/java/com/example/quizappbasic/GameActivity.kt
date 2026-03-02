@@ -8,6 +8,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 
@@ -16,6 +17,7 @@ class GameActivity : AppCompatActivity() {
     private lateinit var viewModel: GameViewModel
     private lateinit var repository: QuestionRepository
     private val calculadora = CalculadoraPuntajeFinal()
+    private var lastBackPressedTime = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -118,6 +120,16 @@ class GameActivity : AppCompatActivity() {
         }
         findViewById<Button>(R.id.btnHint).setOnClickListener {
             if (viewModel.useHint()) renderQuestion()
+        }
+    }
+
+    override fun onBackPressed() {
+        val currentTime = System.currentTimeMillis()
+        if (currentTime - lastBackPressedTime < 2000L) {
+            super.onBackPressed()
+        } else {
+            lastBackPressedTime = currentTime
+            Toast.makeText(this, "Presiona atrás otra vez para salir", Toast.LENGTH_SHORT).show()
         }
     }
 }

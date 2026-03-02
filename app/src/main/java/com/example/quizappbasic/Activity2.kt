@@ -11,6 +11,17 @@ import com.google.android.material.slider.Slider
 
 class Activity2 : AppCompatActivity() {
 
+    companion object {
+        private const val KEY_CHECKBOX1 = "key_checkbox1"
+        private const val KEY_CHECKBOX2 = "key_checkbox2"
+        private const val KEY_CHECKBOX3 = "key_checkbox3"
+        private const val KEY_CHECKBOX4 = "key_checkbox4"
+        private const val KEY_CHECKBOX5 = "key_checkbox5"
+        private const val KEY_SLIDER_VALUE = "key_slider_value"
+        private const val KEY_SPINNER_POSITION = "key_spinner_position"
+        private const val KEY_SWITCH = "key_switch"
+    }
+
     private lateinit var checkBox1: CheckBox
     private lateinit var checkBox2: CheckBox
     private lateinit var checkBox3: CheckBox
@@ -66,6 +77,17 @@ class Activity2 : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
 
+        if (savedInstanceState != null) {
+            checkBox1.isChecked = savedInstanceState.getBoolean(KEY_CHECKBOX1, false)
+            checkBox2.isChecked = savedInstanceState.getBoolean(KEY_CHECKBOX2, false)
+            checkBox3.isChecked = savedInstanceState.getBoolean(KEY_CHECKBOX3, false)
+            checkBox4.isChecked = savedInstanceState.getBoolean(KEY_CHECKBOX4, false)
+            checkBox5.isChecked = savedInstanceState.getBoolean(KEY_CHECKBOX5, false)
+            slider.value = savedInstanceState.getFloat(KEY_SLIDER_VALUE, 5f)
+            spinner.setSelection(savedInstanceState.getInt(KEY_SPINNER_POSITION, 0))
+            switchGame.isChecked = savedInstanceState.getBoolean(KEY_SWITCH, false)
+        }
+
         startButton.setOnClickListener {
             sendAllData()
         }
@@ -87,14 +109,36 @@ class Activity2 : AppCompatActivity() {
         if (sliderValue > 10) sliderValue = 10
 
         val spinnerValue = spinner.selectedItem.toString()
+        val difficultyValue = when (spinner.selectedItemPosition) {
+            0 -> Difficulty.FACIL.name
+            1 -> Difficulty.NORMAL.name
+            2 -> Difficulty.DIFICIL.name
+            else -> Difficulty.NORMAL.name
+        }
         val switchValue = switchGame.isChecked
 
+        val gameIntent = Intent(this, GameActivity::class.java).apply {
+            putExtra("NUM_QUESTIONS", sliderValue)
+            putExtra("DIFFICULTY", difficultyValue)
+            putExtra("HINTS_ENABLED", switchValue)
+            putExtra("checkBoxList", checkBoxList)
+            putExtra("sliderValue", sliderValue)
+            putExtra("spinnerValue", spinnerValue)
+            putExtra("switchValue", switchValue)
+        }
 
-        intent.putExtra("checkBoxList", checkBoxList)
-        intent.putExtra("sliderValue", sliderValue)
-        intent.putExtra("spinnerValue", spinnerValue)
-        intent.putExtra("switchValue", switchValue)
+        startActivity(gameIntent)
+    }
 
-        startActivity(intent)
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean(KEY_CHECKBOX1, checkBox1.isChecked)
+        outState.putBoolean(KEY_CHECKBOX2, checkBox2.isChecked)
+        outState.putBoolean(KEY_CHECKBOX3, checkBox3.isChecked)
+        outState.putBoolean(KEY_CHECKBOX4, checkBox4.isChecked)
+        outState.putBoolean(KEY_CHECKBOX5, checkBox5.isChecked)
+        outState.putFloat(KEY_SLIDER_VALUE, slider.value)
+        outState.putInt(KEY_SPINNER_POSITION, spinner.selectedItemPosition)
+        outState.putBoolean(KEY_SWITCH, switchGame.isChecked)
     }
 }

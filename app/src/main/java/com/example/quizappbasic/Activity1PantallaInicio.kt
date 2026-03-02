@@ -10,6 +10,10 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.quizappbasic.R.id
 
 class Activity1PantallaInicio : AppCompatActivity() {
+    companion object {
+        private const val KEY_PUNTUACIONES_ENABLED = "key_puntuaciones_enabled"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -23,17 +27,29 @@ class Activity1PantallaInicio : AppCompatActivity() {
         val btnJugar = findViewById<Button>(id.btnJugar)
         val btnOpciones = findViewById<Button>(id.btnOpciones)
         val btnPuntuaciones = findViewById<Button>(id.btnPuntuaciones)
+        btnPuntuaciones.isEnabled = savedInstanceState?.getBoolean(KEY_PUNTUACIONES_ENABLED, false) ?: false
 
         btnJugar.setOnClickListener {
-        // startActivity(Intent(this, Activity2::class.java)) // Aqui se abre la actividad 3
+            val intentJuego = Intent(this, GameActivity::class.java).apply {
+                putExtra("NUM_QUESTIONS", 5)
+                putExtra("DIFFICULTY", Difficulty.NORMAL.name)
+                putExtra("HINTS_ENABLED", true)
+            }
+            startActivity(intentJuego)
         }
 
         btnOpciones.setOnClickListener {
-        // startActivity(Intent(this, Activity2::class.java)) // Aqui se abre la actividad 2
+            startActivity(Intent(this, Activity2::class.java))
         }
 
         btnPuntuaciones.setOnClickListener {
         // Aqui no se abre nada xd
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        val btnPuntuaciones = findViewById<Button>(id.btnPuntuaciones)
+        outState.putBoolean(KEY_PUNTUACIONES_ENABLED, btnPuntuaciones.isEnabled)
     }
 }
