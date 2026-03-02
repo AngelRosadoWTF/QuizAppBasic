@@ -33,16 +33,29 @@ class GameActivity : AppCompatActivity() {
 
     private fun initGame() {
         val allQuestions = repository.getAllQuestions().shuffled()
-        viewModel.totalQuestions =
-            intent.getIntExtra("NUM_QUESTIONS", 5)
-        viewModel.difficulty =
-            Difficulty.valueOf(intent.getStringExtra("DIFFICULTY") ?: Difficulty.NORMAL.name)
+        val requestedQuestions = intent.getIntExtra("NUM_QUESTIONS", 5)
+        viewModel.totalQuestions = requestedQuestions.coerceIn(1, allQuestions.size)
+
+        val difficultyExtra = intent.getStringExtra("DIFFICULTY") ?: Difficulty.NORMAL.name
+        viewModel.difficulty = try {
+            Difficulty.valueOf(difficultyExtra)
+        } catch (_: IllegalArgumentException) {
+            Difficulty.NORMAL
+        }
+
         viewModel.hintsEnabled =
             intent.getBooleanExtra("HINTS_ENABLED", true)
         viewModel.availableHints = if (viewModel.hintsEnabled) 3 else 0
         viewModel.questions = allQuestions
             .take(viewModel.totalQuestions)
             .toMutableList()
+
+        if (viewModel.questions.isEmpty()) {
+            Toast.makeText(this, "No hay preguntas disponibles", Toast.LENGTH_SHORT).show()
+            finish()
+            return
+        }
+
         viewModel.questions.forEach {
             it.answers.shuffle()
             it.answers.retainAll(
