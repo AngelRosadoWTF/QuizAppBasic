@@ -11,6 +11,15 @@ class CalculadoraPuntajeFinal : Calculadorapuntaje {
     override fun calcular(rondas: List<RondaPregunta>, dificultad: Difficulty): ResultadoFinalModel {
         // Filtramos las rondas para obtener solo aquellas que han sido respondidas
         val respondidas = rondas.filter { it.indiceOpcionSeleccionada != null }
+        if (respondidas.isEmpty()) {
+            return ResultadoFinalModel(
+                puntaje = 0,
+                totalPreguntas = rondas.size,
+                respuestasCorrectas = 0,
+                pistasUsadas = rondas.count { it.usoPista },
+                dificultad = dificultad
+            )
+        }
         // Contamos cuantas de las respuestas seleccionadas son correctas,
         val correctas = respondidas.count { ronda ->
             val indice = ronda.indiceOpcionSeleccionada

@@ -33,7 +33,13 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun initGame() {
-        val allQuestions = repository.getAllQuestions().shuffled()
+        val selectedThemes = getSelectedThemesFromIntent()
+        val baseQuestions = if (selectedThemes.isEmpty()) {
+            repository.getAllQuestions()
+        } else {
+            repository.getQuestionByTheme(selectedThemes)
+        }
+        val allQuestions = baseQuestions.shuffled()
         val requestedQuestions = intent.getIntExtra("NUM_QUESTIONS", 5)
         viewModel.totalQuestions = requestedQuestions.coerceIn(1, allQuestions.size)
 
@@ -63,6 +69,36 @@ class GameActivity : AppCompatActivity() {
                 it.answers.take(viewModel.difficulty.maxAnswers)
             )
         }
+    }
+
+    private fun getSelectedThemesFromIntent(): List<Theme> {
+        val explicitThemes = intent.getStringArrayListExtra("selectedThemes")
+        if (!explicitThemes.isNullOrEmpty()) {
+            val parsedThemes = mutableListOf<Theme>()
+            for (themeName in explicitThemes) {
+                try {
+                    parsedThemes.add(Theme.valueOf(themeName))
+                } catch (_: IllegalArgumentException) {
+                }
+            }
+            if (parsedThemes.isNotEmpty()) return parsedThemes
+        }
+
+        val selected = intent.getBooleanArrayExtra("checkBoxList") ?: return emptyList()
+        val themes = listOf(
+            Theme.PELICULAS,
+            Theme.VIDEOJUEGOS,
+            Theme.GEOGRAFIA,
+            Theme.PROGRAMACION,
+            Theme.ALGEBRA
+        )
+        val result = mutableListOf<Theme>()
+        for (index in selected.indices) {
+            if (index < themes.size && selected[index]) {
+                result.add(themes[index])
+            }
+        }
+        return result
     }
 
     private fun renderQuestion() {

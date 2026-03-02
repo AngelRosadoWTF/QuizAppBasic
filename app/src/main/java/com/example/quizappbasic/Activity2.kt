@@ -103,6 +103,18 @@ class Activity2 : AppCompatActivity() {
             checkBox5.isChecked
         )
 
+        val selectedThemeNames = arrayListOf<String>()
+        if (checkBoxList[0]) selectedThemeNames.add(Theme.PELICULAS.name)
+        if (checkBoxList[1]) selectedThemeNames.add(Theme.VIDEOJUEGOS.name)
+        if (checkBoxList[2]) selectedThemeNames.add(Theme.GEOGRAFIA.name)
+        if (checkBoxList[3]) selectedThemeNames.add(Theme.PROGRAMACION.name)
+        if (checkBoxList[4]) selectedThemeNames.add(Theme.ALGEBRA.name)
+
+        if (selectedThemeNames.isEmpty()) {
+            Toast.makeText(this, "Selecciona al menos un tema", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         var sliderValue = slider.value.toInt()
 
         if (sliderValue < 5) sliderValue = 5
@@ -122,6 +134,7 @@ class Activity2 : AppCompatActivity() {
             putExtra("DIFFICULTY", difficultyValue)
             putExtra("HINTS_ENABLED", switchValue)
             putExtra("checkBoxList", checkBoxList)
+            putStringArrayListExtra("selectedThemes", selectedThemeNames)
             putExtra("sliderValue", sliderValue)
             putExtra("spinnerValue", spinnerValue)
             putExtra("switchValue", switchValue)
