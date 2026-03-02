@@ -11,6 +11,7 @@ class CalculadoraPuntajeFinal : Calculadorapuntaje {
     override fun calcular(rondas: List<RondaPregunta>, dificultad: Difficulty): ResultadoFinalModel {
         // Filtramos las rondas para obtener solo aquellas que han sido respondidas
         val respondidas = rondas.filter { it.indiceOpcionSeleccionada != null }
+        // Si no se ha respondido ninguna pregunta, retornamos un resultado con puntaje 0 y detalles básicos
         if (respondidas.isEmpty()) {
             return ResultadoFinalModel(
                 puntaje = 0,
@@ -29,20 +30,19 @@ class CalculadoraPuntajeFinal : Calculadorapuntaje {
         val pistasUsadas = rondas.count { it.usoPista }
         val rondasSinPista = rondas.size - pistasUsadas
 
-        // Calculamos el puntaje total basado en las respuestas, pistas y dificultad
-        val puntuacionPorPreguntaRespondida = respondidas.size * 60
-        val bonificacionPorRespuestaCorrecta = correctas * 40
-        val penalizacionPorPistaUtilizada = pistasUsadas * 35
-        val bonificacionPorPistaNoUtilizada = if (rondasSinPista < 0) 0 else rondasSinPista * 15
-        val puntuacionSegunDificultad = when (dificultad) {
-            Difficulty.FACIL -> correctas * 10
-            Difficulty.NORMAL -> correctas * 30
-            Difficulty.DIFICIL -> correctas * 60
+        // Calculamos el puntaje total basado en los valores base solicitados: 1, 2, 3 y 4
+        val puntuacionPorPreguntaRespondida = correctas * 1
+        val penalizacionPorPistaUtilizada = pistasUsadas * 2
+        val bonificacionPorPistaNoUtilizada = if (rondasSinPista < 0) 0 else rondasSinPista * 3
+        val multiplicadorDificultad = when (dificultad) {
+            Difficulty.FACIL -> 1
+            Difficulty.NORMAL -> 2
+            Difficulty.DIFICIL -> 3
         }
+        val puntuacionSegunDificultad = correctas * 4 * multiplicadorDificultad
         // Sumamos todas las partes para obtener el puntaje total, asegurándonos de que no sea negativo
         val totalCalculado = (
             puntuacionPorPreguntaRespondida +
-                bonificacionPorRespuestaCorrecta +
                 bonificacionPorPistaNoUtilizada +
                 puntuacionSegunDificultad -
                 penalizacionPorPistaUtilizada
