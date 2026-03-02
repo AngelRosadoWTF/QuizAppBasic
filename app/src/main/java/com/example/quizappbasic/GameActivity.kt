@@ -65,10 +65,19 @@ class GameActivity : AppCompatActivity() {
         }
 
         viewModel.questions.forEach {
-            it.answers.shuffle()
-            it.answers.retainAll(
-                it.answers.take(viewModel.difficulty.maxAnswers)
-            )
+            val correctAnswer = it.answers.firstOrNull { answer -> answer.isCorrect }
+            if (correctAnswer != null) {
+                val incorrectAnswers = it.answers.filter { answer -> !answer.isCorrect }.shuffled()
+                val maxIncorrect = (viewModel.difficulty.maxAnswers - 1).coerceAtLeast(0)
+                val selectedAnswers = mutableListOf(correctAnswer)
+                selectedAnswers.addAll(incorrectAnswers.take(maxIncorrect))
+                selectedAnswers.shuffle()
+                it.answers.clear()
+                it.answers.addAll(selectedAnswers)
+            } else {
+                it.answers.shuffle()
+                it.answers.retainAll(it.answers.take(viewModel.difficulty.maxAnswers))
+            }
         }
     }
 
