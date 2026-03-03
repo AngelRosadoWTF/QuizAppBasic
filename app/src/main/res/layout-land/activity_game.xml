@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_resultado_screen"
     android:padding="16dp">
 
     <TextView
@@ -11,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/contador"
+        android:textColor="@color/black"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
@@ -19,6 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/pista"
+        android:textColor="@color/black"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -36,6 +39,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Texto de la pregunta"
+        android:textColor="@color/black"
         android:textSize="20sp"
         android:padding="12dp"
         app:layout_constraintTop_toBottomOf="@id/imgTheme"
@@ -57,12 +61,14 @@
             android:id="@+id/btnAnswer1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:text="Respuesta 1"/>
 
         <Button
             android:id="@+id/btnAnswer2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:text="Respuesta 2"
             android:layout_marginTop="8dp"/>
 
@@ -70,6 +76,7 @@
             android:id="@+id/btnAnswer3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:text="Respuesta 3"
             android:layout_marginTop="8dp"/>
 
@@ -77,6 +84,7 @@
             android:id="@+id/btnAnswer4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:text="Respuesta 4"
             android:layout_marginTop="8dp"/>
     </LinearLayout>
@@ -94,12 +102,14 @@
             android:id="@+id/btnHint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:text="PISTA"/>
 
         <Button
             android:id="@+id/btnPrev"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:text="PREV"
             android:layout_marginStart="24dp"/>
 
@@ -107,6 +117,7 @@
             android:id="@+id/btnNext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:text="NEXT"
             android:layout_marginStart="24dp"/>
 
