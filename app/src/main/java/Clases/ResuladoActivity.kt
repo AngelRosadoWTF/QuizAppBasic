@@ -24,6 +24,8 @@ class ResuladoActivity: AppCompatActivity() {
     private lateinit var TextoPorcentaje: TextView
     private lateinit var TextoPistas: TextView
     private lateinit var TextoDificultad: TextView
+    private lateinit var TextoIncorrectas: TextView
+    private lateinit var TextoDesempeno: TextView
     private lateinit var Imagen: ImageView
     private lateinit var ImagenPistas: ImageView
     private lateinit var Botton: Button
@@ -57,6 +59,8 @@ class ResuladoActivity: AppCompatActivity() {
         TextoPorcentaje = findViewById(R.id.tvPorcentaje)
         TextoPistas = findViewById(R.id.tvPistas)
         TextoDificultad = findViewById(R.id.tvDificultad)
+        TextoIncorrectas = findViewById(R.id.tvIncorrectas)
+        TextoDesempeno = findViewById(R.id.tvDesempeno)
         Imagen = findViewById(R.id.Imagenchill)
         ImagenPistas = findViewById(R.id.ImagenPistas)
         Botton = findViewById(R.id.Resultadosplay)
@@ -94,6 +98,13 @@ class ResuladoActivity: AppCompatActivity() {
         val estado =viewModel.estado
         val total = estado.total.coerceAtLeast(1)
         val porcentaje = (estado.correctas * 100) / total
+        val incorrectas = (estado.total - estado.correctas).coerceAtLeast(0)
+        val desempeno = when {
+            porcentaje >= 90 -> "Excelente"
+            porcentaje >= 70 -> "Bueno"
+            porcentaje >= 50 -> "Regular"
+            else -> "Necesita mejorar"
+        }
 
         TextoPuntaje.text= "Puntaje total: ${estado.puntaje}"
         Texto.text = "Resumen final"
@@ -101,6 +112,8 @@ class ResuladoActivity: AppCompatActivity() {
         TextoPorcentaje.text = "Porcentaje: ${porcentaje}%"
         TextoPistas.text = "Pistas usadas: ${estado.pistasUsadas}"
         TextoDificultad.text = "Dificultad: ${estado.dificultad}"
+        TextoIncorrectas.text = "Incorrectas: ${incorrectas}"
+        TextoDesempeno.text = "Desempeño: ${desempeno}"
         Imagen.setImageResource(ImagenCalificacion(estado.puntaje, estado.correctas, estado.total))
         ImagenPistas.setImageResource(ImagenEstadoPistas(estado.pistasUsadas))
 

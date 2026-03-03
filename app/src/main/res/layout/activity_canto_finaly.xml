@@ -15,11 +15,25 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <ImageView
+            android:id="@+id/Imagenchill"
+            android:layout_width="240dp"
+            android:layout_height="240dp"
+            android:scaleType="centerInside" />
+
+        <ImageView
+            android:id="@+id/ImagenPistas"
+            android:layout_width="240dp"
+            android:layout_height="240dp"
+            android:layout_marginTop="12dp"
+            android:scaleType="centerInside" />
+
         <TextView
             android:id="@+id/tvTituloResultado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Resultados"
+            android:layout_marginTop="14dp"
             android:textSize="22sp"
             android:textStyle="bold" />
 
@@ -68,19 +82,19 @@
             android:layout_marginTop="4dp"
             android:textSize="17sp" />
 
-        <ImageView
-            android:id="@+id/Imagenchill"
-            android:layout_width="240dp"
-            android:layout_height="240dp"
-            android:layout_marginTop="20dp"
-            android:scaleType="centerInside" />
+        <TextView
+            android:id="@+id/tvIncorrectas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textSize="17sp" />
 
-        <ImageView
-            android:id="@+id/ImagenPistas"
-            android:layout_width="240dp"
-            android:layout_height="240dp"
-            android:layout_marginTop="12dp"
-            android:scaleType="centerInside" />
+        <TextView
+            android:id="@+id/tvDesempeno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textSize="17sp" />
 
         <Button
             android:id="@+id/Resultadosplay"
