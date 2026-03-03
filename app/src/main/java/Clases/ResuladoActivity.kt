@@ -20,6 +20,10 @@ class ResuladoActivity: AppCompatActivity() {
     //Intancias de variables
     private lateinit var TextoPuntaje: TextView
     private lateinit var Texto: TextView
+    private lateinit var TextoCorrectas: TextView
+    private lateinit var TextoPorcentaje: TextView
+    private lateinit var TextoPistas: TextView
+    private lateinit var TextoDificultad: TextView
     private lateinit var Imagen: ImageView
     private lateinit var ImagenPistas: ImageView
     private lateinit var Botton: Button
@@ -49,6 +53,10 @@ class ResuladoActivity: AppCompatActivity() {
      // Conexion de variables
         TextoPuntaje  = findViewById(R.id.Progreso)
         Texto = findViewById(R.id.estatus)
+        TextoCorrectas = findViewById(R.id.tvCorrectas)
+        TextoPorcentaje = findViewById(R.id.tvPorcentaje)
+        TextoPistas = findViewById(R.id.tvPistas)
+        TextoDificultad = findViewById(R.id.tvDificultad)
         Imagen = findViewById(R.id.Imagenchill)
         ImagenPistas = findViewById(R.id.ImagenPistas)
         Botton = findViewById(R.id.Resultadosplay)
@@ -88,10 +96,11 @@ class ResuladoActivity: AppCompatActivity() {
         val porcentaje = (estado.correctas * 100) / total
 
         TextoPuntaje.text= "Puntaje total: ${estado.puntaje}"
-        Texto.text = "Correctas: ${estado.correctas}/${estado.total}\n" +
-                "Porcentaje: ${porcentaje}%\n" +
-                "Pistas usadas: ${estado.pistasUsadas}\n" +
-                "Dificultad: ${estado.dificultad}"
+        Texto.text = "Resumen final"
+        TextoCorrectas.text = "Aciertos: ${estado.correctas}/${estado.total}"
+        TextoPorcentaje.text = "Porcentaje: ${porcentaje}%"
+        TextoPistas.text = "Pistas usadas: ${estado.pistasUsadas}"
+        TextoDificultad.text = "Dificultad: ${estado.dificultad}"
         Imagen.setImageResource(ImagenCalificacion(estado.puntaje, estado.correctas, estado.total))
         ImagenPistas.setImageResource(ImagenEstadoPistas(estado.pistasUsadas))
 
