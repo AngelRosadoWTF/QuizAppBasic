@@ -20,6 +20,10 @@ class ResuladoActivity: AppCompatActivity() {
     //Intancias de variables
     private lateinit var TextoPuntaje: TextView
     private lateinit var Texto: TextView
+    private lateinit var TextoCorrectas: TextView
+    private lateinit var TextoPorcentaje: TextView
+    private lateinit var TextoPistas: TextView
+    private lateinit var TextoDificultad: TextView
     private lateinit var Imagen: ImageView
     private lateinit var ImagenPistas: ImageView
     private lateinit var Botton: Button
@@ -30,8 +34,11 @@ class ResuladoActivity: AppCompatActivity() {
         private const val KEY_CORRECTAS = "correctas"
         private const val KEY_TOTAL = "total"
         private const val KEY_PISTAS = "pistasUsadas"
+        private const val KEY_PISTAS_HABILITADAS = "pistas_habilitadas"
         private const val KEY_DIFICULTAD = "dificultad"
     }
+
+    private var pistasHabilitadasRonda: Boolean = true
 
 
 
@@ -45,15 +52,21 @@ class ResuladoActivity: AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        
      // Conexion de variables
         TextoPuntaje  = findViewById(R.id.Progreso)
         Texto = findViewById(R.id.estatus)
+        TextoCorrectas = findViewById(R.id.tvCorrectas)
+        TextoPorcentaje = findViewById(R.id.tvPorcentaje)
+        TextoPistas = findViewById(R.id.tvPistas)
+        TextoDificultad = findViewById(R.id.tvDificultad)
         Imagen = findViewById(R.id.Imagenchill)
         ImagenPistas = findViewById(R.id.ImagenPistas)
         Botton = findViewById(R.id.Resultadosplay)
 
      //Instanciamos por primara vez los datos
         viewModel.estado = if (savedInstanceState != null) {
+            pistasHabilitadasRonda = savedInstanceState.getBoolean(KEY_PISTAS_HABILITADAS, true)
             ResultadoEstado(
                 puntaje = savedInstanceState.getInt(KEY_PUNTAJE, 0),
                 correctas = savedInstanceState.getInt(KEY_CORRECTAS, 0),
@@ -62,6 +75,7 @@ class ResuladoActivity: AppCompatActivity() {
                 dificultad = savedInstanceState.getString(KEY_DIFICULTAD) ?: "NORMAL"
             )
         } else {
+            pistasHabilitadasRonda = intent.getBooleanExtra(Claves.PistasHabilitadas, true)
             ResultadoEstado(
                 puntaje= intent.getIntExtra(Claves.puntaje, 0),
                 correctas = intent.getIntExtra(Claves.Aciertos, 0),
@@ -83,17 +97,31 @@ class ResuladoActivity: AppCompatActivity() {
     // Leemos resultados con los datos le dames vista al puntaje
     private fun Actualizacion (){
         val estado =viewModel.estado
+        val total = estado.total.coerceAtLeast(1)
+        val porcentaje = (estado.correctas * 100) / total
+
         TextoPuntaje.text= "Puntaje total: ${estado.puntaje}"
-        Texto.text = "Correctas: ${estado.correctas}/${estado.total} --> PistasUsadas: ${estado.pistasUsadas} --> ${estado.dificultad}"
+        Texto.text = "Resumen final"
+        TextoCorrectas.text = "Aciertos: ${estado.correctas}/${estado.total}"
+        TextoPorcentaje.text = "Porcentaje: ${porcentaje}%"
+        TextoPistas.text = "Pistas usadas: ${estado.pistasUsadas}"
+        TextoDificultad.text = "Dificultad: ${estado.dificultad}"
         Imagen.setImageResource(ImagenCalificacion(estado.puntaje, estado.correctas, estado.total))
-        ImagenPistas.setImageResource(ImagenEstadoPistas(estado.pistasUsadas))
+        if (pistasHabilitadasRonda) {
+            ImagenPistas.visibility = android.view.View.VISIBLE
+            ImagenPistas.setImageResource(ImagenEstadoPistas(estado.pistasUsadas))
+        } else {
+            ImagenPistas.visibility = android.view.View.GONE
+        }
 
     }
-
+    
+    // Funcion para mostrar la imagen de pistas dependiendo de si se usaron o no
     private fun ImagenEstadoPistas(pistasUsadas: Int): Int {
         return if (pistasUsadas > 0) R.drawable.conpistas else R.drawable.sinpistas
     }
 
+    // Funcion para mostrar la imagen de calificacion dependiendo del puntaje y respuestas correctas
     private fun ImagenCalificacion(score: Int, correctas: Int, total: Int): Int{
         return when {
             correctas == 0 -> R.drawable.queseador
@@ -112,6 +140,7 @@ class ResuladoActivity: AppCompatActivity() {
         outState.putInt(KEY_CORRECTAS, viewModel.estado.correctas)
         outState.putInt(KEY_TOTAL, viewModel.estado.total)
         outState.putInt(KEY_PISTAS, viewModel.estado.pistasUsadas)
+        outState.putBoolean(KEY_PISTAS_HABILITADAS, pistasHabilitadasRonda)
         outState.putString(KEY_DIFICULTAD, viewModel.estado.dificultad)
     }
 

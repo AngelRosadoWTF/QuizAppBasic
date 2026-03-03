@@ -7,6 +7,7 @@ import Objetos.Claves
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -27,7 +28,15 @@ class GameActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this)[GameViewModel::class.java]
         repository = QuestionRepository(this)
-        initGame()
+
+        if (!viewModel.isGameInitialized) {
+            initGame()
+        }
+
+        if (!viewModel.isGameInitialized || viewModel.questions.isEmpty()) {
+            return
+        }
+
         renderAnswers(viewModel.getCurrentQuestion())
         renderQuestion()
         setupButtons()
@@ -57,6 +66,8 @@ class GameActivity : AppCompatActivity() {
         viewModel.questions = allQuestions
             .take(viewModel.totalQuestions)
             .toMutableList()
+
+        viewModel.isGameInitialized = true
 
         if (viewModel.questions.isEmpty()) {
             Toast.makeText(this, "No hay preguntas disponibles", Toast.LENGTH_SHORT).show()
@@ -195,6 +206,7 @@ class GameActivity : AppCompatActivity() {
             putExtra(Claves.Aciertos, resultado.respuestasCorrectas)
             putExtra(Claves.Total, resultado.totalPreguntas)
             putExtra(Claves.PistasEnUso, resultado.pistasUsadas)
+            putExtra(Claves.PistasHabilitadas, viewModel.hintsEnabled)
             putExtra(Claves.DificultadResult, resultado.dificultad.name)
         }
         startActivity(intent)
@@ -203,7 +215,18 @@ class GameActivity : AppCompatActivity() {
 
     private fun setupButtons() {
         findViewById<Button>(R.id.btnNext).setOnClickListener {
+            val currentQuestion = viewModel.getCurrentQuestion()
+            if (!currentQuestion.answered) {
+                Toast.makeText(this, "Responde la pregunta antes de continuar", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             if (viewModel.currentIndex >= viewModel.questions.lastIndex) {
+                val hasUnansweredQuestions = viewModel.questions.any { !it.answered }
+                if (hasUnansweredQuestions) {
+                    Toast.makeText(this, "Debes responder todas las preguntas antes de ver resultados", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
                 finalizarJuego()
             } else {
                 viewModel.nextQuestion()
@@ -214,8 +237,14 @@ class GameActivity : AppCompatActivity() {
             viewModel.prevQuestion()
             renderQuestion()
         }
-        findViewById<Button>(R.id.btnHint).setOnClickListener {
-            if (viewModel.useHint()) renderQuestion()
+        val hintButton = findViewById<Button>(R.id.btnHint)
+        if (viewModel.hintsEnabled) {
+            hintButton.visibility = View.VISIBLE
+            hintButton.setOnClickListener {
+                if (viewModel.useHint()) renderQuestion()
+            }
+        } else {
+            hintButton.visibility = View.GONE
         }
     }
 

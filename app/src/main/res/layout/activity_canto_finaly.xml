@@ -15,18 +15,10 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <TextView
-            android:id="@+id/Progreso"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="28sp"
-            android:textStyle="bold|italic" />
-
         <ImageView
             android:id="@+id/Imagenchill"
             android:layout_width="240dp"
             android:layout_height="240dp"
-            android:layout_marginTop="24dp"
             android:scaleType="centerInside" />
 
         <ImageView
@@ -37,13 +29,58 @@
             android:scaleType="centerInside" />
 
         <TextView
+            android:id="@+id/tvTituloResultado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Resultados"
+            android:layout_marginTop="14dp"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/Progreso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="28sp"
+            android:textStyle="bold|italic" />
+
+        <TextView
             android:id="@+id/estatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             android:textAlignment="center"
             android:textSize="18sp"
-            android:textStyle="italic" />
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvCorrectas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/tvPorcentaje"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/tvPistas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/tvDificultad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textSize="17sp" />
 
         <Button
             android:id="@+id/Resultadosplay"

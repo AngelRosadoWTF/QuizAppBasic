@@ -13,6 +13,11 @@ import androidx.core.content.edit
 class Activity2 : AppCompatActivity() {
 
     companion object {
+        private const val PREFS_NAME = "game_settings"
+        private const val PREF_NUM_QUESTIONS = "NUM_QUESTIONS"
+        private const val PREF_DIFFICULTY = "DIFFICULTY"
+        private const val PREF_HINTS_ENABLED = "HINTS_ENABLED"
+        private const val PREF_SELECTED_THEMES = "selectedThemes"
         private const val KEY_CHECKBOX1 = "key_checkbox1"
         private const val KEY_CHECKBOX2 = "key_checkbox2"
         private const val KEY_CHECKBOX3 = "key_checkbox3"
@@ -32,6 +37,8 @@ class Activity2 : AppCompatActivity() {
     private lateinit var spinner: Spinner
     private lateinit var switchGame: Switch
     private lateinit var startButton: Button
+    private lateinit var saveButton: Button
+    private lateinit var backButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +61,8 @@ class Activity2 : AppCompatActivity() {
         spinner = findViewById(R.id.spinner)
         switchGame = findViewById(R.id.Switch)
         startButton = findViewById(R.id.startButton)
+        saveButton = findViewById(R.id.saveButton)
+        backButton = findViewById(R.id.backButton)
 
         slider.valueFrom = 5f
         slider.valueTo = 10f
@@ -78,6 +87,8 @@ class Activity2 : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
 
+        loadSettingsFromPreferences()
+
         if (savedInstanceState != null) {
             checkBox1.isChecked = savedInstanceState.getBoolean(KEY_CHECKBOX1, false)
             checkBox2.isChecked = savedInstanceState.getBoolean(KEY_CHECKBOX2, false)
@@ -91,6 +102,17 @@ class Activity2 : AppCompatActivity() {
 
         startButton.setOnClickListener {
             sendAllData()
+        }
+
+        saveButton.setOnClickListener {
+            if (saveSettingsToPreferences(showToast = true)) {
+                Toast.makeText(this, "Configuración guardada", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        backButton.setOnClickListener {
+            startActivity(Intent(this, Activity1PantallaInicio::class.java))
+            finish()
         }
     }
 
@@ -141,14 +163,69 @@ class Activity2 : AppCompatActivity() {
             putExtra("switchValue", switchValue)
         }
 
-        val prefs = getSharedPreferences("game_settings", MODE_PRIVATE)
-        prefs.edit {
-            putInt("NUM_QUESTIONS", sliderValue)
-                .putString("DIFFICULTY", difficultyValue)
-                .putBoolean("HINTS_ENABLED", switchValue)
-        }
+        saveSettingsToPreferences(showToast = false)
 
         startActivity(gameIntent)
+    }
+
+    private fun getSelectedThemeNames(): ArrayList<String> {
+        val selectedThemeNames = arrayListOf<String>()
+        if (checkBox1.isChecked) selectedThemeNames.add(Theme.PELICULAS.name)
+        if (checkBox2.isChecked) selectedThemeNames.add(Theme.VIDEOJUEGOS.name)
+        if (checkBox3.isChecked) selectedThemeNames.add(Theme.GEOGRAFIA.name)
+        if (checkBox4.isChecked) selectedThemeNames.add(Theme.PROGRAMACION.name)
+        if (checkBox5.isChecked) selectedThemeNames.add(Theme.ALGEBRA.name)
+        return selectedThemeNames
+    }
+
+    private fun saveSettingsToPreferences(showToast: Boolean): Boolean {
+        val selectedThemeNames = getSelectedThemeNames()
+        if (selectedThemeNames.isEmpty()) {
+            if (showToast) {
+                Toast.makeText(this, "Selecciona al menos un tema", Toast.LENGTH_SHORT).show()
+            }
+            return false
+        }
+
+        val sliderValue = slider.value.toInt().coerceIn(5, 10)
+        val difficultyValue = when (spinner.selectedItemPosition) {
+            0 -> Difficulty.FACIL.name
+            1 -> Difficulty.NORMAL.name
+            2 -> Difficulty.DIFICIL.name
+            else -> Difficulty.NORMAL.name
+        }
+
+        val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+        prefs.edit {
+            putInt(PREF_NUM_QUESTIONS, sliderValue)
+            putString(PREF_DIFFICULTY, difficultyValue)
+            putBoolean(PREF_HINTS_ENABLED, switchGame.isChecked)
+            putStringSet(PREF_SELECTED_THEMES, selectedThemeNames.toSet())
+        }
+        return true
+    }
+
+    private fun loadSettingsFromPreferences() {
+        val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
+        slider.value = prefs.getInt(PREF_NUM_QUESTIONS, 5).toFloat().coerceIn(5f, 10f)
+
+        val difficultyValue = prefs.getString(PREF_DIFFICULTY, Difficulty.NORMAL.name)
+        val spinnerPosition = when (difficultyValue) {
+            Difficulty.FACIL.name -> 0
+            Difficulty.NORMAL.name -> 1
+            Difficulty.DIFICIL.name -> 2
+            else -> 1
+        }
+        spinner.setSelection(spinnerPosition)
+
+        switchGame.isChecked = prefs.getBoolean(PREF_HINTS_ENABLED, true)
+
+        val savedThemes = prefs.getStringSet(PREF_SELECTED_THEMES, emptySet()) ?: emptySet()
+        checkBox1.isChecked = savedThemes.contains(Theme.PELICULAS.name)
+        checkBox2.isChecked = savedThemes.contains(Theme.VIDEOJUEGOS.name)
+        checkBox3.isChecked = savedThemes.contains(Theme.GEOGRAFIA.name)
+        checkBox4.isChecked = savedThemes.contains(Theme.PROGRAMACION.name)
+        checkBox5.isChecked = savedThemes.contains(Theme.ALGEBRA.name)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

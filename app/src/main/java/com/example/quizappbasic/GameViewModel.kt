@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 class GameViewModel : ViewModel() {
 
     lateinit var questions: MutableList<Question>
+    var isGameInitialized = false
     var currentIndex = 0
     var totalQuestions = 5
     var difficulty = Difficulty.NORMAL
