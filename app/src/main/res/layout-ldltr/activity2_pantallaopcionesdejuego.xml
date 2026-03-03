@@ -5,7 +5,6 @@
     android:id="@+id/activity2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_resultado_screen"
     tools:context=".Activity2"
     tools:ignore="MissingDefaultResource">
 
@@ -15,14 +14,14 @@
         android:layout_height="wrap_content">
 
     <LinearLayout
-        android:background="@android:color/transparent"
+        android:background="@color/black"
         android:id="@+id/topPanel"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:orientation="horizontal">
 
         <TextView
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:id="@+id/opcionesText"
             android:textSize="20dp"
             android:layout_width="match_parent"
@@ -35,7 +34,6 @@
 
     <TextView
         android:id="@+id/textCheckBox"
-        android:textColor="@color/black"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="20dp"
@@ -64,7 +62,6 @@
                 android:id="@+id/themeText1"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:textColor="@color/black"
                 android:text="@string/theme1"/>
 
         </LinearLayout>
@@ -84,7 +81,6 @@
                 android:id="@+id/themeText2"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:textColor="@color/black"
                 android:text="@string/theme2"/>
 
         </LinearLayout>
@@ -104,7 +100,6 @@
                 android:id="@+id/themeText3"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:textColor="@color/black"
                 android:text="@string/theme3"/>
 
         </LinearLayout>
@@ -124,7 +119,6 @@
                 android:id="@+id/themeText4"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:textColor="@color/black"
                 android:text="@string/theme4"/>
 
         </LinearLayout>
@@ -144,7 +138,6 @@
                 android:id="@+id/themeText5"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:textColor="@color/black"
                 android:text="@string/theme5"/>
 
         </LinearLayout>
@@ -160,7 +153,6 @@
 
         <TextView
             android:id="@+id/textSlider"
-            android:textColor="@color/black"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="20dp"
@@ -186,7 +178,6 @@
 
         <TextView
             android:id="@+id/textSpiner"
-            android:textColor="@color/black"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="20dp"
@@ -209,7 +200,6 @@
 
         <TextView
             android:id="@+id/textSwitch"
-            android:textColor="@color/black"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="20dp"
@@ -236,8 +226,6 @@
                 android:id="@+id/backButton"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:backgroundTint="@android:color/white"
-                android:textColor="@color/black"
                 android:text="Volver" />
 
             <Button
@@ -245,8 +233,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_marginStart="12dp"
-                android:backgroundTint="@android:color/white"
-                android:textColor="@color/black"
                 android:text="Guardar configuración" />
 
             <Button
@@ -254,8 +240,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_marginStart="12dp"
-                android:backgroundTint="@android:color/white"
-                android:textColor="@color/black"
                 android:text="Jugar" />
         </LinearLayout>
 

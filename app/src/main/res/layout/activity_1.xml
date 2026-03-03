@@ -4,8 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg_resultado_screen">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/Act1_IV_67"
@@ -28,8 +27,6 @@
         android:layout_marginEnd="64dp"
 
         android:maxWidth="320dp"
-        android:backgroundTint="@android:color/white"
-        android:textColor="@color/black"
         android:text="@string/act1_btnJugar"
         app:layout_constraintBottom_toTopOf="@id/btnOpciones"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,8 +41,6 @@
         android:layout_marginEnd="64dp"
 
         android:maxWidth="320dp"
-        android:backgroundTint="@android:color/white"
-        android:textColor="@color/black"
         android:text="@string/act1_btnOpciones"
         app:layout_constraintBottom_toTopOf="@id/btnPuntuaciones"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,8 +56,6 @@
 
         android:layout_marginBottom="320dp"
         android:maxWidth="320dp"
-        android:backgroundTint="@android:color/white"
-        android:textColor="@color/black"
         android:text="@string/act1_btnPuntuaciones"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

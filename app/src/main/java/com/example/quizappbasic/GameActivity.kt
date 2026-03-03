@@ -159,7 +159,6 @@ class GameActivity : AppCompatActivity() {
                 val answer = question.answers[index]
                 button.visibility = android.view.View.VISIBLE
                 button.text = answer.text
-                button.setTextColor(Color.BLACK)
                 button.setBackgroundColor(Color.LTGRAY)
 
                 if (answer.isEliminated) {
