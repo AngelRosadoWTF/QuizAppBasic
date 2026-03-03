@@ -16,11 +16,19 @@
         android:padding="16dp">
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Resumen de la partida"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="12dp"/>
+
+        <TextView
             android:id="@+id/Progreso"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="28sp"
-            android:textStyle="bold|italic" />
+            android:textSize="32sp"
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/Imagenchill"
@@ -38,12 +46,36 @@
 
         <TextView
             android:id="@+id/estatus"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:textAlignment="center"
             android:textSize="18sp"
-            android:textStyle="italic" />
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvCorrectas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvPistas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="center"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvDificultad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="center"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/Resultadosplay"
@@ -51,7 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="@string/ResultadoJuego"
-            android:textStyle="bold|italic" />
+            android:textStyle="bold" />
 
     </LinearLayout>
 
