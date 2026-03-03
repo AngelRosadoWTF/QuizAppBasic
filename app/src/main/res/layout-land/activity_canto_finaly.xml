@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_resultado_screen"
     android:fillViewport="true">
 
     <LinearLayout
@@ -17,6 +18,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/bg_resultado_card"
             android:orientation="vertical">
 
             <ImageView
@@ -39,6 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_weight="1"
+            android:background="@drawable/bg_resultado_card"
             android:orientation="vertical">
 
             <TextView
