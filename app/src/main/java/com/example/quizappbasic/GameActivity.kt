@@ -206,6 +206,7 @@ class GameActivity : AppCompatActivity() {
             putExtra(Claves.Aciertos, resultado.respuestasCorrectas)
             putExtra(Claves.Total, resultado.totalPreguntas)
             putExtra(Claves.PistasEnUso, resultado.pistasUsadas)
+            putExtra(Claves.PistasHabilitadas, viewModel.hintsEnabled)
             putExtra(Claves.DificultadResult, resultado.dificultad.name)
         }
         startActivity(intent)
