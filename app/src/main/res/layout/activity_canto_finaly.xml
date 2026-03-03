@@ -22,6 +22,15 @@
             android:textSize="28sp"
             android:textStyle="bold|italic" />
 
+        <TextView
+            android:id="@+id/estatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="italic" />
+
         <ImageView
             android:id="@+id/Imagenchill"
             android:layout_width="240dp"
@@ -35,15 +44,6 @@
             android:layout_height="240dp"
             android:layout_marginTop="12dp"
             android:scaleType="centerInside" />
-
-        <TextView
-            android:id="@+id/estatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            android:textStyle="italic" />
 
         <Button
             android:id="@+id/Resultadosplay"
