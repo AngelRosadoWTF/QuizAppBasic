@@ -28,6 +28,7 @@
         android:layout_marginEnd="64dp"
 
         android:maxWidth="320dp"
+        android:backgroundTint="@android:color/white"
         android:textColor="@color/black"
         android:text="@string/act1_btnJugar"
         app:layout_constraintBottom_toTopOf="@id/btnOpciones"
@@ -43,6 +44,7 @@
         android:layout_marginEnd="64dp"
 
         android:maxWidth="320dp"
+        android:backgroundTint="@android:color/white"
         android:textColor="@color/black"
         android:text="@string/act1_btnOpciones"
         app:layout_constraintBottom_toTopOf="@id/btnPuntuaciones"
@@ -59,6 +61,7 @@
 
         android:layout_marginBottom="320dp"
         android:maxWidth="320dp"
+        android:backgroundTint="@android:color/white"
         android:textColor="@color/black"
         android:text="@string/act1_btnPuntuaciones"
         app:layout_constraintBottom_toBottomOf="parent"

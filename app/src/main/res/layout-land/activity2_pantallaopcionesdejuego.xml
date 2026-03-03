@@ -236,6 +236,7 @@
                 android:id="@+id/backButton"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:backgroundTint="@android:color/white"
                 android:textColor="@color/black"
                 android:text="Volver" />
 
@@ -244,6 +245,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_marginStart="12dp"
+                android:backgroundTint="@android:color/white"
                 android:textColor="@color/black"
                 android:text="Guardar configuración" />
 
@@ -252,6 +254,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_marginStart="12dp"
+                android:backgroundTint="@android:color/white"
                 android:textColor="@color/black"
                 android:text="Jugar" />
         </LinearLayout>

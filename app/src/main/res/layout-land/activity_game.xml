@@ -61,6 +61,7 @@
             android:id="@+id/btnAnswer1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/white"
             android:textColor="@color/black"
             android:text="Respuesta 1"/>
 
@@ -68,6 +69,7 @@
             android:id="@+id/btnAnswer2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/white"
             android:textColor="@color/black"
             android:text="Respuesta 2"
             android:layout_marginTop="8dp"/>
@@ -76,6 +78,7 @@
             android:id="@+id/btnAnswer3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/white"
             android:textColor="@color/black"
             android:text="Respuesta 3"
             android:layout_marginTop="8dp"/>
@@ -84,6 +87,7 @@
             android:id="@+id/btnAnswer4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/white"
             android:textColor="@color/black"
             android:text="Respuesta 4"
             android:layout_marginTop="8dp"/>
@@ -102,6 +106,7 @@
             android:id="@+id/btnHint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/white"
             android:textColor="@color/black"
             android:text="PISTA"/>
 
@@ -109,6 +114,7 @@
             android:id="@+id/btnPrev"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/white"
             android:textColor="@color/black"
             android:text="PREV"
             android:layout_marginStart="24dp"/>
@@ -117,6 +123,7 @@
             android:id="@+id/btnNext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/white"
             android:textColor="@color/black"
             android:text="NEXT"
             android:layout_marginStart="24dp"/>
