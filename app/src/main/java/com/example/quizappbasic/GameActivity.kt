@@ -214,7 +214,18 @@ class GameActivity : AppCompatActivity() {
 
     private fun setupButtons() {
         findViewById<Button>(R.id.btnNext).setOnClickListener {
+            val currentQuestion = viewModel.getCurrentQuestion()
+            if (!currentQuestion.answered) {
+                Toast.makeText(this, "Responde la pregunta antes de continuar", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             if (viewModel.currentIndex >= viewModel.questions.lastIndex) {
+                val hasUnansweredQuestions = viewModel.questions.any { !it.answered }
+                if (hasUnansweredQuestions) {
+                    Toast.makeText(this, "Debes responder todas las preguntas antes de ver resultados", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
                 finalizarJuego()
             } else {
                 viewModel.nextQuestion()
