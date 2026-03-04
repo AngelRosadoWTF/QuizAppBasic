@@ -13,26 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:background="@color/black"
-        android:id="@+id/topPanel"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:orientation="horizontal">
-
         <TextView
-            android:textColor="@color/white"
-            android:id="@+id/opcionesText"
-            android:textSize="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textAlignment="center"
-            android:paddingTop="35dp"
-            android:text="@string/opciones"/>
-
-    </LinearLayout>
-
-    <TextView
         android:id="@+id/textCheckBox"
         android:gravity="center"
         android:layout_width="match_parent"
